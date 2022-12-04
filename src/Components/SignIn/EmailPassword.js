@@ -17,9 +17,11 @@ const EmailPassword = ({ handleSignIn, errorMessage }) => {
           name="password"
           type="password"
           placeholder="Write Password"
-          className="border px-2 py-1 border-x-0 border-t-0 border-b-2 focus:outline-none mb-20"
+          className="border px-2 py-1 border-x-0 border-t-0 border-b-2 focus:outline-none"
         />
-        <p className="text-sm text-red-500 text-left mx-2">{errorMessage}</p>
+        <p className="text-sm text-red-500 text-left mx-2 mb-20">
+          {errorMessage}
+        </p>
         <Button text="Login" />
       </form>
       <p className="text-sm text-gray-400 text-right">

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import Error from "../Error/Error";
 
 const Home = () => {
   const [attendanceData, setAttendanceData] = useState([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     fetch("https://test.nexisltd.com/test", {
@@ -11,6 +13,9 @@ const Home = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        if (data.error) {
+          setError(true);
+        }
         // copying into an array for traversing
         const arrData = [];
         for (const prop in data) {
@@ -19,7 +24,10 @@ const Home = () => {
         setAttendanceData(arrData);
       });
   }, []);
-  console.log(attendanceData);
+  // console.log(attendanceData);
+  if (error) {
+    return <Error />;
+  }
 
   if (!attendanceData) {
     return <div>Loading...</div>;
